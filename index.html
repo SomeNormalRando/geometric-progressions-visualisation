@@ -7,7 +7,8 @@
 
 	<link rel="stylesheet" type="text/css" media="screen" href="style.css">
 
-    <script src="script.js" defer></script>
+	<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script defer src="script.js"></script>
 </head>
 <body>
 	<section id="section-input">
@@ -25,39 +26,7 @@
 		<input id="input-log-scale" type="checkbox">
 	</section>
 	<section id="section-sum">
-		<div class="math-line">
-			<div class="math-box">
-				<span>S<sub id="sum-number-of-terms">?</sub> =</span>
-			</div>
-			<div class="math-box">
-				<span>a(r<sup>n</sup> - 1)</span>
-				<hr>
-				<span>r - 1</span>
-			</div>
-		</div>
-		<div class="math-line">
-			<span>= </span>
-			<div class="math-box">
-				<span>
-					<span class="first-term">?</span>(<span class="common-ratio">?</span><sup id="number-of-terms">?</sup> - 1)
-				</span>
-				<hr>
-				<span class="common-ratio">?</span><span> - 1</span>
-			</div>
-		</div>
-		<div class="math-line">
-			<span>= </span>
-			<div class="math-box">
-				<span>
-					<span class="first-term">?</span>(<span id="common-ratio-power-n-minus-one">?</span>)
-				</span>
-				<hr>
-				<span id="common-ratio-minus-one">?</span>
-			</div>
-		</div>
-		<div class="math-line">
-			<span>= <span id="final-sum"></span></span>
-		</div>
+		<span id="sum-math-display"></span>
 	</section>
 	<section id="visualisation">
 		<ol id="vis-container"></ol>

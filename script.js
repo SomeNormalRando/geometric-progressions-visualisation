@@ -1,5 +1,12 @@
-/* eslint-disable no-console */
-// import { } from "mathjs";
+window.MathJax = {
+	loader: {
+		load: ["input/tex", "output/chtml"],
+	},
+	chtml: {
+		displayAlign: "left",
+	},
+};
+
 
 const DECIMAL_INPUT_STEP = 0.1;
 const DECIMAL_INPUT_DECIMAL_POINTS = 1;
@@ -8,6 +15,9 @@ const DEFAULT_FIRST_TERM = 1;
 const DEFAULT_COMMON_RATIO = 10;
 const DEFAULT_NUMBER_OF_TERMS = 9;
 
+// in LaTeX
+const SUM_LINE_1 = "S_n &= \\dfrac{a(r^n-1)}{r - 1}";
+
 const inputFirstTerm = document.getElementById("input-first-term");
 const inputCommonRatio = document.getElementById("input-common-ratio");
 
@@ -15,16 +25,7 @@ const inputNumberOfTerms = document.getElementById("input-number-of-terms");
 const inputLogScale = document.getElementById("input-log-scale");
 const inputDecimalInput = document.getElementById("input-decimal-input");
 
-
-const sumNumberOfTerms = document.getElementById("sum-number-of-terms");
-
-const firstTermDisplays = document.getElementsByClassName("first-term");
-const commonRatioDisplays = document.getElementsByClassName("common-ratio");
-const numberOfTermsDisplay = document.getElementById("number-of-terms");
-
-const commonRatioPowerNMinusOne = document.getElementById("common-ratio-power-n-minus-one");
-const commonRatioMinusOne = document.getElementById("common-ratio-minus-one");
-const finalSumElem = document.getElementById("final-sum");
+const sumMathDisplay = document.getElementById("sum-math-display");
 
 
 let firstTerm = DEFAULT_FIRST_TERM;
@@ -66,20 +67,13 @@ const visContainer = document.getElementById("vis-container");
 function updateVisualisation() {
 	visContainer.replaceChildren();
 
-	sumNumberOfTerms.innerText = numberOfTerms;
+	const line2 = `S_${numberOfTerms} &= \\dfrac{${firstTerm}(${commonRatio}^${numberOfTerms} - 1)}{${commonRatio} - 1}`;
+	const line3 = `&=\\dfrac{${(commonRatio ** numberOfTerms) - 1}}{${commonRatio - 1}}`;
+	const line4 = `&=${sumToNthTerm(numberOfTerms, firstTerm, commonRatio)}`;
 
-	for (const el of firstTermDisplays) {
-		el.innerText = firstTerm;
-	}
-	for (const el of commonRatioDisplays) {
-		el.innerText = commonRatio;
-	}
-	numberOfTermsDisplay.innerText = numberOfTerms;
+	sumMathDisplay.innerText = `$$\\begin{aligned}${SUM_LINE_1}\\\\${line2}\\\\${line3}\\\\${line4}\\end{aligned}$$`;
 
-	commonRatioPowerNMinusOne.innerText = (commonRatio ** numberOfTerms) - 1;
-	commonRatioMinusOne.innerText = commonRatio - 1;
-
-	finalSumElem.innerText = sumToNthTerm(numberOfTerms, firstTerm, commonRatio);
+	window.MathJax.typeset();
 
 	for (let n = 1; n <= numberOfTerms; n += 1) {
 		const nthTermValue = nthTerm(n, firstTerm, commonRatio);
@@ -111,7 +105,6 @@ function updateVisualisation() {
 		barContainer.appendChild(bar);
 		visContainer.appendChild(barContainer);
 	}
-	console.log("updated visualisation");
 }
 
 inputFirstTerm.addEventListener("input", (ev) => {
