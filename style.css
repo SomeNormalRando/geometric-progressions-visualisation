@@ -1,0 +1,37 @@
+body {
+    font-family: serif;
+    /* display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap-reverse; */
+}
+#vis-container {
+    list-style-type: none;
+    white-space: nowrap;
+}
+th {
+    padding: 0 0.5rem;
+    text-align: left;
+}
+td {
+    padding: 0;
+    margin: 0;
+}
+.bar {
+    display: inline-block;
+    text-align: left;
+    background-color: cornflowerblue;
+    border: 0.1rem solid black;
+}
+#section-sum {
+    padding: 0 1rem;
+    
+}
+.math-line {
+    margin: 1rem 0;
+}
+.math-box {
+    vertical-align: middle;
+    display: inline-block;
+    width: fit-content;
+    text-align: center;
+}
