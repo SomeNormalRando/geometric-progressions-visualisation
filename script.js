@@ -1,13 +1,3 @@
-window.MathJax = {
-	loader: {
-		load: ["input/tex", "output/chtml"],
-	},
-	chtml: {
-		displayAlign: "left",
-	},
-};
-
-
 const DECIMAL_INPUT_STEP = 0.1;
 const DECIMAL_INPUT_DECIMAL_POINTS = 1;
 
