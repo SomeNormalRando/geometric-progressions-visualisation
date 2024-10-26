@@ -57,34 +57,38 @@ const visContainer = document.getElementById("vis-container");
 function updateVisualisation() {
 	visContainer.replaceChildren();
 
-	const line2 = `S_${numberOfTerms} &= \\dfrac{${firstTerm}(${commonRatio}^${numberOfTerms} - 1)}{${commonRatio} - 1}`;
+	const line2 = `S_${numberOfTerms} &= \\dfrac{${firstTerm}(${commonRatio}^{${numberOfTerms}} - 1)}{${commonRatio} - 1}`;
 	const line3 = `&=\\dfrac{${(commonRatio ** numberOfTerms) - 1}}{${commonRatio - 1}}`;
 	const line4 = `&=${sumToNthTerm(numberOfTerms, firstTerm, commonRatio)}`;
 
 	sumMathDisplay.innerText = `$$\\begin{aligned}${SUM_LINE_1}\\\\${line2}\\\\${line3}\\\\${line4}\\end{aligned}$$`;
 
-	window.MathJax.typeset();
-
 	for (let n = 1; n <= numberOfTerms; n += 1) {
 		const nthTermValue = nthTerm(n, firstTerm, commonRatio);
-		const barHeight = useLogScale === true ? Math.log2(nthTermValue) * 10 : nthTermValue;
+		// to ensure consistent width when value of the nth term is negative
+		const absNthTermValue = Math.abs(nthTermValue);
+		const barWidth = useLogScale === true ? Math.log2(absNthTermValue) * 10 : absNthTermValue;
 
 		const barContainer = document.createElement("li");
 
 		// #region
 		const termNumberLabel = document.createElement("span");
-		termNumberLabel.innerText = "T";
+		// \( \) delimit single-line expressions
+		termNumberLabel.innerText = `\\(T_{${n}}\\)`;
 
-		const subscript = document.createElement("sub");
-		subscript.innerText = n.toString().padEnd(2, " ");
-		termNumberLabel.appendChild(subscript);
+		// const subscript = document.createElement("sub");
+		// subscript.innerText = n.toString().padEnd(2, " ");
+		// termNumberLabel.appendChild(subscript);
 
 		barContainer.appendChild(termNumberLabel);
 		// #endregion
 
 		const bar = document.createElement("div");
 		bar.classList.add("bar");
-		bar.style.width = `${barHeight}px`;
+		bar.style.width = `${barWidth}px`;
+
+		// colour bars for negative values a different colour
+		if (nthTermValue < 0) bar.classList.add("negative-term-value");
 
 		const termValueLabel = document.createElement("span");
 		termValueLabel.classList.add("term-value");
@@ -95,6 +99,8 @@ function updateVisualisation() {
 		barContainer.appendChild(bar);
 		visContainer.appendChild(barContainer);
 	}
+
+	window.MathJax.typeset();
 }
 
 inputFirstTerm.addEventListener("input", (ev) => {

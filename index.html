@@ -2,25 +2,28 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>geometric progressions visualiser</title>
+	<title>geometric progressions visualisation</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
 	<link rel="stylesheet" type="text/css" media="screen" href="style.css">
 
-    <script defer src="mathjax-config.js"></script>
+    <script defer src="./mathjax-config.js"></script>
 	<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script defer src="script.js"></script>
+    <script defer src="./script.js"></script>
 </head>
 <body>
+	<h1>geometric progressions visualisation</h1>
 	<section id="section-input">
-		<label for="input-first-term">first term, a =</label>
-		<input id="input-first-term" type="number">
-		<label for="input-common-ratio">common ratio, r =</label>
-		<input id="input-common-ratio" type="number">
+		<label for="input-first-term">first term, \(a\) =</label>
+		<input id="input-first-term" type="number" size="10">
+		<label for="input-common-ratio">common ratio, \(r\) =</label>
+		<input id="input-common-ratio" type="number" size="10">
 
-		<label for="input-number-of-terms">number of terms, n =</label>
-		<input id="input-number-of-terms" type="number" step="1">
-
+		<label for="input-number-of-terms">number of terms, \(n\) =</label>
+		<input id="input-number-of-terms" type="number" step="1" size="10">
+	</section>
+	<small>*if using a mouse, scroll with cursor above input box to increment/decrement values</small>
+	<section id="section-checkboxes">
 		<label for="input-decimal-input">decimal input</label>
 		<input id="input-decimal-input" type="checkbox">
 		<label for="input-log-scale">log scale</label>
@@ -30,7 +33,7 @@
 		<span id="sum-math-display"></span>
 	</section>
 	<section id="visualisation">
-		<ol id="vis-container"></ol>
+		<table><tbody id="vis-container"></tbody></table>
 	</section>
 </body>
 </html>

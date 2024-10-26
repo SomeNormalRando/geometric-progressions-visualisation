@@ -1,37 +1,54 @@
 body {
-    font-family: serif;
-    /* display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap-reverse; */
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+#section-input {
+	display: flex;
+	align-items: center;
+}
+#section-input input {
+	font-size: 1rem;
+	margin-left: 0.2rem;
+}
+#section-input input:not(:last-child) {
+	margin-right: 1rem;
+}
+input[type=checkbox]:hover {
+	cursor: pointer;
 }
 #vis-container {
-    list-style-type: none;
-    white-space: nowrap;
+	list-style-type: none;
+	white-space: nowrap;
 }
 th {
-    padding: 0 0.5rem;
-    text-align: left;
+	padding: 0 0.5rem;
+	text-align: left;
 }
 td {
-    padding: 0;
-    margin: 0;
+	padding: 0;
+	margin: 0;
 }
 .bar {
-    display: inline-block;
-    text-align: left;
-    background-color: cornflowerblue;
-    border: 0.1rem solid black;
+	display: inline-block;
+	position: absolute;
+	left: 3rem;
+	text-align: left;
+	background-color: lightblue;
+	border: 0.1rem solid black;
+	padding-left: 0.2rem;
+}
+.bar.negative-term-value {
+	background-color: lightcoral;
 }
 #section-sum {
-    padding: 0 1rem;
-    
+	padding: 0 1rem;
+	
 }
 .math-line {
-    margin: 1rem 0;
+	margin: 1rem 0;
 }
 .math-box {
-    vertical-align: middle;
-    display: inline-block;
-    width: fit-content;
-    text-align: center;
+	vertical-align: middle;
+	display: inline-block;
+	width: fit-content;
+	text-align: center;
 }
